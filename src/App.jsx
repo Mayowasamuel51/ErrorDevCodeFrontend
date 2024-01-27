@@ -1,17 +1,30 @@
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Api from "./components/Api";
-import Main from "./pages/Mian";
-import Url from "./pages/Url";
+const LazyAuthLayout = React.lazy(() => import("./layoutAuth/AdminLayout"));
 import HomeLayout from "./layoutAuth/HomeLayout";
+import Loader from "./components/Loader";
+import Url from "./pages/Url";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-    children:[
-    
-    
-    ]
+    children: [],
+  },
+
+  {
+    path: "/dashboard",
+    element: (
+      <React.Suspense fallback={<Loader />}>
+        <LazyAuthLayout />
+      </React.Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element:<Url/>
+      },
+    ],
   },
 ]);
 function App() {

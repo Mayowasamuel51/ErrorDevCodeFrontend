@@ -1,4 +1,5 @@
 import * as React from "react";
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,7 +11,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, NavLink, } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import GOOGLE from "../assets/images/google.png";
@@ -27,8 +28,11 @@ import {
   signOut,
 } from "firebase/auth";
 function Navbar() {
+ 
+ 
   // const notifyfail = () => toast("Kindly refresh your browser ");
   const navigate = useNavigate();
+  const [imageGoogle ,setImageGoogle]= React.useState("")
   const { setToken, token } = useStateContext();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -49,6 +53,7 @@ function Navbar() {
   };
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
+
   const loginwihGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
@@ -61,7 +66,27 @@ function Navbar() {
         console.log("error", error.message);
       });
   };
+  const signout = () => {
+    signOut(auth).then((user) => {
+        window.localStorage.removeItem("ACCESS_TOKEN")
+        window.localStorage.removeItem("user")
+        setToken(null)
+    }).catch((err) => console.log(err.message))
+}
 
+    React.useEffect(() => {
+        auth.onAuthStateChanged((loggedInUser) => {
+            if (loggedInUser) {
+                loggedInUser.getIdToken().then((token) => {
+                    console.log(token)
+                    window.localStorage.setItem("user", loggedInUser.email)
+                    setToken(token)
+                    setImageGoogle(loggedInUser.photoURL)
+                    navigate('/dashboard')
+                }).catch((err) => console.log(err.message))
+            }
+        })
+    }, [])
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -158,7 +183,7 @@ function Navbar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={`${imageGoogle}`} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -177,11 +202,17 @@ function Navbar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <div>   <ul className='font-semibold p-3 leading-[30px]'>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/myProfile"></NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/links">Links</NavLink></motion.li>
+                                    <li onClick={signout} className="hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer">
+                                        Sign Out
+                                    </li>
+                                </ul></div>
+
               </Menu>
             </Box>
           ) : (
