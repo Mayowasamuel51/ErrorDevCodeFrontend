@@ -11,11 +11,14 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const api = import.meta.env.VITE_STORE_URL;
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import UrlPagination from "../components/UrlPagination";
+const api = import.meta.env.VITE_STORE_API
 
 const Url = () => {
-
+  const notify = () => toast("Website url stored!!!!");
+  const user = localStorage.getItem('user')
   const navigate = useNavigate()
   const [error, setError] = React.useState(null)
 
@@ -32,6 +35,7 @@ const Url = () => {
   });
   const onSubmit = (data) => {
     const payload = {
+      email:user,
       url: data.websiteurl,
       description: data.description,
     };
@@ -45,6 +49,7 @@ const Url = () => {
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           navigate("/dashboard");
+          notify()
         }
       })
       .catch((err) => {
@@ -61,7 +66,9 @@ const Url = () => {
   return (
     <>
       <h2 className="text-center font-bold">STORE WEBSITE URL'S </h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-16 w-4/5 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-16 w-full grid place-items-center ">
+    <div className="w-4/5 h-40 ">
+    <ToastContainer/>
         <TextField
           {...register("websiteurl", { required: true })}
           fullWidth
@@ -88,7 +95,14 @@ const Url = () => {
         >
           Send
         </Button>
+    </div>
       </form>
+      <div className="mt-4 w-full grid place-items-center">
+        <div className="mt-16  w-4/5 h-40 ">
+        <UrlPagination/>
+        </div>
+      </div>
+      
     </>
   );
 };

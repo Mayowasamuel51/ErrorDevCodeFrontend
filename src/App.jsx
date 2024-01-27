@@ -4,12 +4,15 @@ const LazyAuthLayout = React.lazy(() => import("./layoutAuth/AdminLayout"));
 import HomeLayout from "./layoutAuth/HomeLayout";
 import Loader from "./components/Loader";
 import Url from "./pages/Url";
+import ApiKey from "./pages/Apikey";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-    children: [],
+    children: [
+
+    ],
   },
 
   {
@@ -22,7 +25,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element:<Url/>
+        element: <Url />,
+      },
+      {
+        path:"websiteurl",
+        element: <Url />,
+      },
+      {
+        path: "apikeys",
+        element: <ApiKey />,
       },
     ],
   },
