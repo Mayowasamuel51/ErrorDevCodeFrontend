@@ -96,7 +96,7 @@ const ApiKey = () => {
             style={{ marginTop: "12px" }}
             endIcon={<SendIcon />}
           >
-            Send
+            Store Api Info
           </Button>
         </div>
       </form>
