@@ -56,7 +56,7 @@ function Navbar() {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
+        // console.log(loggedInUser);
         setToken(loggedInUser);
         window.localStorage.setItem("user", loggedInUser.email);
       })
@@ -94,7 +94,6 @@ function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -103,7 +102,7 @@ function Navbar() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              fontFamily: "poppins",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -150,8 +149,8 @@ function Navbar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box> */}
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
+          </Box> 
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -172,15 +171,53 @@ function Navbar() {
           </Typography>
           {token ? (
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {/* {page} */}
-                </Button>
-              ))}
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <ul className="font-semibold p-3 flex  relative ">
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/websiteurl"
+                    >
+                      Website Url
+                    </NavLink>
+                  </motion.li>
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/apikeys"
+                    >
+                      Store Api Key's
+                    </NavLink>
+                  </motion.li>
+
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/portfoilo"
+                    >
+                        Add Portfoilo 
+                    </NavLink>
+                  </motion.li>
+                </ul>
+              </Button>
             </Box>
           ) : null}
 
@@ -210,16 +247,6 @@ function Navbar() {
                 <div>
                   {" "}
                   <ul className="font-semibold p-3 leading-[30px]">
-                    <motion.li transition={{ stiffness: 250 }}>
-                      {/* <NavLink
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-black font-black"
-                            : "scale-100 hover:text-BLUE"
-                        }
-                        to="/myProfile"
-                      ></NavLink> */}
-                    </motion.li>
                     <motion.li transition={{ stiffness: 250 }}>
                       <NavLink
                         className={({ isActive }) =>
@@ -284,7 +311,7 @@ function Navbar() {
                 onClick={loginwihGoogle}
                 className="flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300"
               >
-                <img src={GOOGLE} alt="" className="w-10 px-2" /> 
+                <img src={GOOGLE} alt="" className="w-10 px-2" />
                 {/* Google */}
               </button>
             </div>
@@ -295,3 +322,4 @@ function Navbar() {
   );
 }
 export default Navbar;
+// www.linkedin.com/in/mayowa-odukoya-012439215

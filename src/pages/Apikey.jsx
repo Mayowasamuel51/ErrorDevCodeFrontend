@@ -65,7 +65,7 @@ const ApiKey = () => {
   };
   return (
     <>
-      <h2 className="text-center font-bold">STORE YOUR API KEYS </h2>
+      <h2 className="text-center font-bold text-4xl  p-4">STORE YOUR API KEYS </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mt-16 w-full grid place-items-center"

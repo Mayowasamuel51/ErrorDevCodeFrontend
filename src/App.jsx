@@ -5,6 +5,7 @@ import HomeLayout from "./layoutAuth/HomeLayout";
 import Loader from "./components/Loader";
 import Url from "./pages/Url";
 import ApiKey from "./pages/Apikey";
+import Portfoilo from "./pages/Portfoilo";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
       {
         path: "apikeys",
         element: <ApiKey />,
+      },
+
+      {
+        path: "portfoilo",
+        element: <Portfoilo />,
       },
     ],
   },
