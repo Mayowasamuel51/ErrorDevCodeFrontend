@@ -41,7 +41,7 @@ const KeyPagination = () => {
         <thead className="">
           <tr className="font-black text-left">
             <th className="text-sm md:text-base tracking-wide p-1 md:p-2">
-              Registration
+            Date
             </th>
             <th className="text-sm md:text-base tracking-wide p-1 md:p-2">
               API NAME

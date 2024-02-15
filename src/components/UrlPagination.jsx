@@ -35,7 +35,7 @@ const UrlPagination = () => {
             <table className='dashboard table-auto w-full'>
                 <thead className=''>
                     <tr className='font-black text-left'>
-                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Registration</th>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Date</th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Website Url </th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block'>Description</th>
                       

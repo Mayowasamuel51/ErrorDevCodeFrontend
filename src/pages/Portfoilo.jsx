@@ -28,6 +28,7 @@ const Portfoilo = () => {
 
   const schema = yup.object().shape({
     portfoilo: yup.string().required(),
+    aboutyou: yup.string().required(),
     // image: yup
     //   .mixed()
     //   .test(
@@ -105,6 +106,7 @@ const Portfoilo = () => {
               .then((downloadURL) => {
                 const payload = {
                   email: data.email,
+                  aboutyou:data.aboutyou,
                   portfoilourl: data.portfoilo,
                   imageurl: downloadURL,
                 };
@@ -155,6 +157,20 @@ const Portfoilo = () => {
           <p className="text-red-600">{errors.portfoilo?.message}</p>
           <br />
           <br />
+
+          <TextField
+            {...register("aboutyou", { required: true })}
+            fullWidth
+            name="aboutyou"
+            type="text"
+            label="Write a short note About You "
+            id="fullWidth"
+          />
+          <p className="text-red-600">{errors.aboutyou?.message}</p>
+          <br />
+          <br />
+
+
           <div className="mb-3">
             <label
               for="formFile"

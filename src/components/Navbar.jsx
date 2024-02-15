@@ -98,7 +98,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -109,7 +109,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            Error-Dev
+            Error-Dev-Code
           </Typography>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
