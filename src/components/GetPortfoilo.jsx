@@ -40,7 +40,7 @@ const GetPortfoilo = () => {
       <div className="flex overflow-x-scroll">
         {paginatedData?.map((item, index) => {
           return (
-            <div key={index} className="w-[400px] border m-6">
+            <div key={index} className="w-[400px] border m-3">
               <div>
                 <div
                   className=" rounded-lg bg-white
@@ -55,10 +55,7 @@ const GetPortfoilo = () => {
                     />
                   </a>
                   <div className="p-10">
-                    {/* <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                    Card title
-                  </h5>
-                 */}
+                    
                     <TERipple>
                       <a
                         href={`${item.portfoilourl}`}

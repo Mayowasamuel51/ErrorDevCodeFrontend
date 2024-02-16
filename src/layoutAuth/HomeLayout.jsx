@@ -45,10 +45,12 @@ const HomeLayout = () => {
             </svg>
           </button>
         </div>
+
+    
       </div>
       <div className="m-4">
         <h1 className="font-semibold  text-3xl">
-          Check out Developer Porfoilo's{" "}
+          Check out Developer Portfoilo's{" "}
         </h1>
         <div   className="">
           <GetPortfoilo />

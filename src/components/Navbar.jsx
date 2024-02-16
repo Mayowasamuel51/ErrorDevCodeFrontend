@@ -175,7 +175,7 @@ function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <ul className="font-semibold p-3 flex  relative ">
+                <ul className="font-semibold p-1 flex  relative ">
                   <motion.li transition={{ stiffness: 250 }}>
                     <NavLink
                       style={{ paddingLeft: "20px" }}
