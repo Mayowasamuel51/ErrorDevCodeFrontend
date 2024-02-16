@@ -176,7 +176,7 @@ const Portfoilo = () => {
               for="formFile"
               class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
             >
-              Take a ScreenShot of your Porfoilo Main Page and Upload here
+              Take a ScreenShot of your Porfolio Main Page and Upload here
             </label>
             <input
               {...register("image", { required: true })}
