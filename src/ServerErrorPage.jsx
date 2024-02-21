@@ -15,7 +15,6 @@ const ServerErrorPage = () => {
                     </p>
                 </div>
             </div>
-           
         </>
   )
 }

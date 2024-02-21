@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 const Store_Url =()=>{
     return ( 
         <>
