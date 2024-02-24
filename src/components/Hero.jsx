@@ -41,12 +41,16 @@ function Hero() {
             {/* Section header */}
             <div className="text-center pb-12 md:pb-16">
               <h1
-                className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
+                className="text-6xl md:text-6xl  font-bold leading-tighter tracking-tighter mb-4"
                 data-aos="zoom-y-out"
               >
-                Make your website{" "}
+                {/* Make your website{" "} Develop Application and Store information well
+                 */}
+                 {/* Error-deve is the Information Store Application for developers */}
+                {" Error-dev is the go-to Information Store Application for developers"}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-                  wonderful
+                  {/* wonderful */}
+                  . Store error, find errors,  
                 </span>
               </h1>
               <div className="max-w-3xl mx-auto">
@@ -55,8 +59,9 @@ function Hero() {
                   data-aos="zoom-y-out"
                   data-aos-delay="150"
                 >
-                  Our landing page template works on all devices, so you only
-                  have to set it up once, and get beautiful results forever.
+                  {/* Our landing page template works on all devices, so you only
+                  have to set it up once, and get beautiful results forever. */}
+                  Error-dev is the application that empowers developers to effortlessly store information and website URLs directly within the projects they're constructing
                 </p>
                 <div
                   className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center"
@@ -65,7 +70,7 @@ function Hero() {
                 >
                   <div>
                     <a
-                      className="btn text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
+                      className="btn p-3 text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
                       href="#0"
                     >
                       Start free trialS
@@ -73,11 +78,12 @@ function Hero() {
                   </div>
                   <div>
                     <a
-                      className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
+                      className="btn  p-3 text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
                       href="#0"
                     >
-                      Learn more
+                      check developers portfolios
                     </a>
+              
                   </div>
                 </div>
               </div>

@@ -1,24 +1,10 @@
-<<<<<<< HEAD
-
-
-
-
-=======
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
->>>>>>> 78deccd7d16fa66f78160fe798b9f59453c0f32f
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-
-
-
-/* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
-
-
-=======
 * {
+
   font-family: 'Poppins', sans-serif;
+  /* font-weight: bolder; */
 }
->>>>>>> 78deccd7d16fa66f78160fe798b9f59453c0f32f

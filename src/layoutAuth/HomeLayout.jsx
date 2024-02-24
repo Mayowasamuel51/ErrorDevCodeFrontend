@@ -4,6 +4,7 @@ import { useStateContext } from "../context/ContextProvider";
 import { Ripple, initTE } from "tw-elements";
 import GetPortfoilo from "../components/GetPortfoilo";
 import Hero from "../components/Hero";
+import Features from "../components/Features";
 
 initTE({ Ripple });
 
@@ -19,6 +20,7 @@ const HomeLayout = () => {
       <div className="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
         <Navbar />
         <Hero />
+        <Features/>
 
         {/* <div className="mb-3" style={{ margin: "auto", width: "50%" }}>
         <div className="relative mb-4 flex w-full flex-wrap items-stretch mt-10">
