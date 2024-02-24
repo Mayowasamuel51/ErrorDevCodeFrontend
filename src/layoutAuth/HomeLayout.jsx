@@ -55,10 +55,10 @@ const HomeLayout = () => {
     
       </div>
       <div className="m-4">
-        <h1 className="font-semibold  text-3xl">
+        <h1 className="text-center font-semibold text-3xl">
         Check out developer portfolios{" "}
         </h1>
-        <div   className="">
+        <div className="">
           <GetPortfoilo />
         </div>
       </div> */}

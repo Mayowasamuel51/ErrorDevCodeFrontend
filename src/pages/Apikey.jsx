@@ -17,7 +17,7 @@ import KeyPagination from "../components/KeyPagination";
 const api = import.meta.env.VITE_STORE_KEY;
 
 const ApiKey = () => {
-  const notify = () => toast("Api information  stored!!!!");
+  const notify = () => toast("Api information stored!!!!");
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
   const [error, setError] = React.useState(null);

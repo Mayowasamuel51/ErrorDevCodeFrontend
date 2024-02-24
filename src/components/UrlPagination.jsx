@@ -1,5 +1,5 @@
 import Loader from "../components/Loader"
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import UrlFetch from "../hooks/FetchUrl";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import ServerErrorPage from "../ServerErrorPage";
@@ -7,28 +7,57 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa"
 import '@splidejs/react-splide/css';
 import moment from "moment";
+import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
+
+
+const columns = [
+    {
+        accessorFn: (row) => `${row.date}`,
+        header: "Date",
+        cell: (props)=> <p>{props.getValue()}</p>
+    },
+    {
+        accessorFn: (row) => `${row.description}`,
+        header: "Description",
+        cell: (props)=> <p>{props.getValue()}</p>
+    },
+    {
+        accessorFn: (row) => `${row.url}`,
+        header: "Url",
+        cell: (props)=> <p>{props.getValue()}</p>
+    },
+]
 
 const UrlPagination = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage] = useState(10)
-    const { data, isLoading, error } = UrlFetch()
+    const { data: urls, isLoading, error } = UrlFetch()
 
 
-    if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
-    if (isLoading) return <Loader />
-    if (data?.status === 500) return <ServerErrorPage />
-
-
-
+    
     const lastPostIndex = currentPage * postsPerPage
     const firstPostIndex = lastPostIndex - postsPerPage
-    const paginatedData = data?.data?.response?.slice(firstPostIndex, lastPostIndex)
-    const length = data?.data?.response?.length || 1
+    const paginatedData = urls?.data?.response?.slice(firstPostIndex, lastPostIndex)
+    const length = urls?.data?.response?.length || 1
 
     const pageNumber = []
     for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
         pageNumber.push(i)
     }
+
+    const URLS = urls?.data?.response
+
+    const columnDef = useMemo(()=> URLS, [])
+    const table = useReactTable({
+        data: columnDef,
+        columns,
+        getCoreRowModel: getCoreRowModel()
+    })
+
+
+    if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
+    if (isLoading) return <Loader />
+    if (urls?.status === 500) return <ServerErrorPage />
 
     return (
         <div className="">
@@ -38,7 +67,6 @@ const UrlPagination = () => {
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Date</th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Website Url </th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block'>Description</th>
-                      
                     </tr>
                 </thead>
                 <tbody className='tbody'>
@@ -49,9 +77,6 @@ const UrlPagination = () => {
                                 .format("YYYY-MM-DD")}</td>
                             <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><a href={`${info.url}`}>{info.url}</a></td>
                             <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2'>{info.description}</td>
-
-                       
-                            
                             {/* <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><IoEyeSharp size={20} /></td>
                             <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><FaTrash size={20} /></td> */}
                         </tr>
@@ -59,10 +84,10 @@ const UrlPagination = () => {
                 </tbody>
             </table>
             <div>
-                {!data && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
+                {!urls && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
             </div>
             <div className='relative text-sm text-center my-2 md:my-4 font-bold tracking-wider group'>
-                {pageNumber.length > 0 && <p>{currentPage} 0f {pageNumber.length} {pageNumber.length > 1 ? "pages" : "page" }</p>}
+                {pageNumber.length > 0 && <p>{currentPage} 0f {pageNumber?.length} {pageNumber?.length > 1 ? "pages" : "page" }</p>}
                 <div className="my-2 md:my-5">
                     <Splide options={{
                         drag: "free",
@@ -89,6 +114,32 @@ const UrlPagination = () => {
                     </Splide>
                 </div>
             </div>
+            <table className="table w-full border-2 border-black">
+                <thead>
+                    {table?.getHeaderGroups()?.map((headerEl)=> (
+                        <tr key={headerEl.id}>
+                            {headerEl?.headers.map((header)=> (
+                                <th key={header.id} colSpan={header.colSpan} className="bg-black text-white py-2">{flexRender(header.column.columnDef.header, header.getContext())}</th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                {table?.getRowModel()?.rows.map((row)=> (
+                    <tr key={row.id} >
+                        {row?.getVisibleCells().map((cell)=> (
+                            <td key={cell.id} colSpan={cell.colSpan} className="text-center py-2">{
+                                flexRender(
+                                    cell.column.columnDef.cell,
+                                    cell.getContext()
+                                )
+                            }</td>
+                        ))}
+                    </tr>
+                ))}
+                </tbody>
+
+            </table>
         </div>
     )
 }
