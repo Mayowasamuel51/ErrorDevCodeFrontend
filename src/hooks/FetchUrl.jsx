@@ -5,7 +5,7 @@ const user = localStorage.getItem("user");
 const UrlFetch = () => {
   return useQuery({
     queryKey: ["url"],
-    queryFn: () => axios.get(`${api}/${user}`),
+    queryFn: async() => await axios.get(`${api}/${user}`),
   });
 };
 
