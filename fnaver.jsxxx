@@ -1,0 +1,285 @@
+{token ?
+     <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "poppins",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            Error-Dev-Code
+          </Typography>
+
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  {token ? (
+                    <Typography textAlign="center">{page}</Typography>
+                  ) : null}
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box> 
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            Error-Dev
+          </Typography>
+          {token ? (
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <ul className="font-semibold p-1 flex  relative ">
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/websiteurl"
+                    >
+                      Website Url
+                    </NavLink>
+                  </motion.li>
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/apikeys"
+                    >
+                      Store Api Key's
+                    </NavLink>
+                  </motion.li>
+
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/portfoilo"
+                    >
+                        Add Portfoilo 
+                    </NavLink>
+                  </motion.li>
+
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/portfoilo"
+                    >
+                        Store images 
+                    </NavLink>
+                  </motion.li>
+                  <motion.li transition={{ stiffness: 250 }}>
+                    <NavLink
+                      style={{ paddingLeft: "20px" }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-black font-black"
+                          : "scale-100 hover:text-BLUE"
+                      }
+                      to="/dashboard/portfoilo"
+                    >
+                        Store Simple Text 
+                    </NavLink>
+                  </motion.li>
+                </ul>
+              </Button>
+            </Box>
+          ) : null}
+
+          {token ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={`${imageGoogle}`} />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <div>
+                  {" "}
+                  <ul className="font-semibold p-3 leading-[30px]">
+                    <motion.li transition={{ stiffness: 250 }}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-black font-black"
+                            : "scale-100 hover:text-BLUE"
+                        }
+                        to="/dashboard/websiteurl"
+                      >
+                        Website Url
+                      </NavLink>
+                    </motion.li>
+                    <motion.li transition={{ stiffness: 250 }}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-black font-black"
+                            : "scale-100 hover:text-BLUE"
+                        }
+                        to="/dashboard/apikeys"
+                      >
+                        Store Api Key's
+                      </NavLink>
+                    </motion.li>
+                    <motion.li transition={{ stiffness: 250 }}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-black font-black"
+                            : "scale-100 hover:text-BLUE"
+                        }
+                        to="/dashboard/apikeys"
+                      >
+                        Store images
+                      </NavLink>
+                    </motion.li>
+                    <motion.li transition={{ stiffness: 250 }}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-black font-black"
+                            : "scale-100 hover:text-BLUE"
+                        }
+                        to="/mentorship"
+                      >
+                       Add Portfolio
+                      </NavLink>
+                    </motion.li>
+
+                    <motion.li transition={{ stiffness: 250 }}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-black font-black"
+                            : "scale-100 hover:text-BLUE"
+                        }
+                        to="/mentorship"
+                      >
+                      Store Simple Text 
+                      </NavLink>
+                    </motion.li>
+                    <motion.li transition={{ stiffness: 250 }}>
+                      {/* <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-black font-black"
+                            : "scale-100 hover:text-BLUE"
+                        }
+                        to="/dashboard/links"
+                      >
+                        Links
+                      </NavLink> */}
+                    </motion.li>
+                    <li
+                      onClick={signout}
+                      className="hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer"
+                    >
+                      Sign Out
+                    </li>
+                  </ul>
+                </div>
+              </Menu>
+            </Box>
+          ) : (
+            <div className="login-options flex flex-col gap-3 font-medium">
+              <button
+                onClick={loginwihGoogle}
+                className="flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300"
+              >
+                <img src={GOOGLE} alt="" className="w-10 px-2" />
+                {/* Google */}
+              </button>
+            </div>
+          )}
+        </Toolbar>
+      </Container>
+    </AppBar> : 
+    
+    <Header/>
+    
+    }

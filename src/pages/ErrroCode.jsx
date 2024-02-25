@@ -33,66 +33,65 @@ const formVariant = {
     opacity: 0,
   },
 };
-const Url = () => {
-  const notify = () => toast("Website url stored!!!!");
-  const user = localStorage.getItem("user");
-  const navigate = useNavigate();
-  const [error, setError] = React.useState(null);
-
-  const schema = yup.object().shape({
-    websiteurl: yup.string().required(),
-    description: yup.string().required(),
-  });
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-  const onSubmit = (data) => {
-    // check to get the url image
-
-    const payload = {
-      email: user,
-      url: data.websiteurl,
-      description: data.description,
+function ErrorCode(){
+    const notify = () => toast("Website url stored!!!!");
+    const user = localStorage.getItem("user");
+    const navigate = useNavigate();
+    const [error, setError] = React.useState(null);
+  
+    const schema = yup.object().shape({
+      websiteurl: yup.string().required(),
+      description: yup.string().required(),
+    });
+    const {
+      register,
+      formState: { errors },
+      handleSubmit,
+    } = useForm({
+      resolver: yupResolver(schema),
+    });
+    const onSubmit = (data) => {
+      // check to get the url image
+  
+      const payload = {
+        email: user,
+        url: data.websiteurl,
+        description: data.description,
+      };
+      axios
+        .post(`${api}`, payload, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          if (res.status === 201 || res.status === 200) {
+            navigate("/dashboard");
+            notify();
+          }
+        })
+        .catch((err) => {
+          const response = err.response;
+          // managing error from the backend server
+          if (response.status === 422) {
+            setError(response.data.message);
+          } else if (response.status === 401) {
+            setError(response.data.message);
+          } else if (response.status === 403) {
+            setError(response.data.message);
+          }
+        });
     };
-    axios
-      .post(`${api}`, payload, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        if (res.status === 201 || res.status === 200) {
-          navigate("/dashboard");
-          notify();
-        }
-      })
-      .catch((err) => {
-        const response = err.response;
-        // managing error from the backend server
-        if (response.status === 422) {
-          setError(response.data.message);
-        } else if (response.status === 401) {
-          setError(response.data.message);
-        } else if (response.status === 403) {
-          setError(response.data.message);
-        }
-      });
-  };
-  return (
-    <>
-      <div className="text-center   p-4">
+    return ( 
+        <>
+          <div className="text-center   p-4">
         <h2 className="font-semibold text-4xl">
-          Share website URLs for storage
+          Store the error of your code 
           {/* Please share the website URLs for storage  */}
         </h2>
         <p className="px-10">
-      
-          Instead of bookmarking or pinning tabs in your browser, you can store
+          Rather than writing or keeping api on your computer, you can store
           them on ErrorDeve
         </p>
       </div>
@@ -137,12 +136,11 @@ const Url = () => {
           </div>
         </form>
       </motion.div>
-      <div className="mt-4 w-full grid place-items-center">
-        <div className="mt-16  w-4/5 h-40 ">
-          <UrlPagination />
-        </div>
-      </div>
-    </>
-  );
-};
-export default Url;
+      
+        
+        
+        </>
+    )
+}
+
+export default ErrorCode;

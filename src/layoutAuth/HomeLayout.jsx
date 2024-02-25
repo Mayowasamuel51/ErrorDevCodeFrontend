@@ -3,6 +3,9 @@ import Navbar from "../components/Navbar";
 import { useStateContext } from "../context/ContextProvider";
 import { Ripple, initTE } from "tw-elements";
 import GetPortfoilo from "../components/GetPortfoilo";
+import Hero from "../components/Hero";
+import Features from "../components/Features";
+import Footer from "../pages/Footer";
 
 initTE({ Ripple });
 
@@ -12,9 +15,14 @@ const HomeLayout = () => {
     return <Navigate to="/dashboard" />;
   }
   return (
-    <div>
-      <Navbar />
-      <div className="mb-3" style={{ margin: "auto", width: "50%" }}>
+    <div className={` font-inter antialiased bg-white text-gray-900 tracking-tight`}>
+      <div className="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
+        <Navbar />
+        <Hero />
+        <Features/>
+        <Footer/>
+
+        {/* <div className="mb-3" style={{ margin: "auto", width: "50%" }}>
         <div className="relative mb-4 flex w-full flex-wrap items-stretch mt-10">
           <input
             type="search"
@@ -55,8 +63,9 @@ const HomeLayout = () => {
         <div className="">
           <GetPortfoilo />
         </div>
+      </div> */}
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 };

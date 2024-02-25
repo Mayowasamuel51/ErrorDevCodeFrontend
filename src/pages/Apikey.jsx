@@ -65,7 +65,18 @@ const ApiKey = () => {
   };
   return (
     <>
-      <h2 className="text-center font-bold text-4xl  p-4">STORE YOUR API KEYS </h2>
+      {/* <h2 className="text-center font-bold text-4xl  p-4">STORE YOUR API KEYS </h2> */}
+      <div className="text-center   p-4">
+        <h2 className="font-semibold text-4xl">
+          {/* Share website URLs for storage */}
+          STORE YOUR API KEYS 
+          {/* Please share the website URLs for storage  */}
+        </h2>
+        <p className="px-10">
+        Rather than writing or keeping api on your computer, you can store
+          them on ErrorDeve
+        </p>
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mt-16 w-full grid place-items-center"
