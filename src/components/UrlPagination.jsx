@@ -67,7 +67,8 @@ const UrlPagination = () => {
     data: data,
     columns: defaultColumns,
     getCoreRowModel: getCoreRowModel(),
-    columnResizeMode: "onChange"
+    columnResizeMode: "onChange",
+    manualExpanding: true
   });
 
 
