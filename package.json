@@ -21,6 +21,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/react-query": "^5.17.19",
     "@tanstack/react-table": "^8.12.0",
+    "@vercel/analytics": "^1.2.2",
     "axios": "^1.6.7",
     "firebase": "^10.7.2",
     "framer-motion": "^11.0.3",
