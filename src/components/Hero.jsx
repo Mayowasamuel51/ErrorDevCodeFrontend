@@ -50,7 +50,7 @@ function Hero() {
                 {" Error-dev is the go-to Information Store Application for developers"}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
                   {/* wonderful */}
-                  . Store error, find errors,  
+                  . Store Api key's, Store website url 
                 </span>
               </h1>
               <div className="max-w-3xl mx-auto">
@@ -68,17 +68,17 @@ function Hero() {
                   data-aos="zoom-y-out"
                   data-aos-delay="300"
                 >
-                  <div>
+                  {/* <div>
                     <a
                       className="btn p-3 text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
                       href="#0"
                     >
                       Start free trialS
                     </a>
-                  </div>
+                  </div> */}
                   <div>
                     <a
-                      className="btn  p-3 text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
+                      className="btn font-semibold p-3 text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
                       href="#0"
                     >
                       check developers portfolios

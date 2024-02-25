@@ -54,15 +54,14 @@ const UrlPagination = () => {
         getCoreRowModel: getCoreRowModel()
     })
 
-
     if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
     if (isLoading) return <Loader />
     if (urls?.status === 500) return <ServerErrorPage />
 
     return (
-        <div className="">
-            <table className='dashboard table-auto w-full'>
-                <thead className=''>
+        <div className="mt-9">
+            <table className='  border-separate border  dashboard table-auto w-full'>
+                <thead className='border-solid border-2 border-sky-500'>
                     <tr className='font-black text-left'>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Date</th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Website Url </th>
@@ -75,7 +74,7 @@ const UrlPagination = () => {
                             <td data-cell="Registration Date" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>   {moment(info.date)
                                 .utc()
                                 .format("YYYY-MM-DD")}</td>
-                            <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><a href={`${info.url}`}>{info.url}</a></td>
+                            <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><a href={`${info.url}`} target="_blank">{info.url}</a></td>
                             <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2'>{info.description}</td>
                             {/* <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><IoEyeSharp size={20} /></td>
                             <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><FaTrash size={20} /></td> */}
@@ -114,7 +113,7 @@ const UrlPagination = () => {
                     </Splide>
                 </div>
             </div>
-            <table className="table w-full border-2 border-black">
+            {/* <table className="table w-full border-2 border-black">
                 <thead>
                     {table?.getHeaderGroups()?.map((headerEl)=> (
                         <tr key={headerEl.id}>
@@ -139,7 +138,7 @@ const UrlPagination = () => {
                 ))}
                 </tbody>
 
-            </table>
+            </table> */}
         </div>
     )
 }

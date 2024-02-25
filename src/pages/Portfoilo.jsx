@@ -137,9 +137,17 @@ const Portfoilo = () => {
   };
   return (
     <>
-      <h2 className="text-center font-bold text-4xl  pt-4 ">
-        Add your Porfolio to Gain Gigs{" "}
-      </h2>
+      <div className="text-center   p-4">
+        <h2 className="font-semibold text-4xl">
+          {/* Share website URLs for storage */}
+          Add your Porfolio {" "}
+          {/* Please share the website URLs for storage  */}
+        </h2>
+        <p className="px-10">
+        Enhance collaboration with fellow developers
+        </p>
+      </div>
+    
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mt-16 w-full grid place-items-center"

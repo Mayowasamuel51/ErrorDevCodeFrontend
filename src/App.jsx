@@ -6,6 +6,7 @@ import Loader from "./components/Loader";
 import Url from "./pages/Url";
 import ApiKey from "./pages/Apikey";
 import Portfoilo from "./pages/Portfoilo";
+import ErrorCode from "./pages/ErrroCode";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "portfoilo",
         element: <Portfoilo />,
+      },
+      {
+        path: "seeportfoilo",
+        element: <Portfoilo />,
+      },
+      {
+        path: "errorcode",
+        element: <ErrorCode />,
       },
     ],
   },

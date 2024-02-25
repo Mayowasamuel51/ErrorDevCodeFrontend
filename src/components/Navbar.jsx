@@ -35,7 +35,7 @@ function Navbar() {
   const { setToken, token } = useStateContext();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -93,10 +93,7 @@ function Navbar() {
   }, []);
   return (
     <>
-
-    
-     <Header/>
-    
+      <Header />
     </>
   );
 }

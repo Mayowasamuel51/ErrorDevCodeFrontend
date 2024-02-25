@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react"
-import FeaturesBg from '../assets/images/features-bg.png'
+import FeaturesBg from '../assets/download (1).jpg'
+import FeaturesBg2 from '../assets/download (2).jpg'
+import FeaturesBg3 from '../assets/download.jpg'
 import { Transition } from '@headlessui/react'
 import FeaturesElement from '../assets/images/features-element.png'
 
@@ -49,8 +51,9 @@ function Features(){
                     onClick={(e) => { e.preventDefault(); setTab(1); }}
                   >
                     <div>
-                      <div className="font-bold leading-snug tracking-tight mb-1">Store any  website url's </div>
-                      <div className="text-gray-600">Take collaboration to the next level with security and administrative features built for teams.</div>
+                      <div className="font-bold leading-snug tracking-tight mb-1">Store your Api key </div>
+                      <div className="text-gray-600"> Rather than writing or keeping api on your computer, you can store
+          them on ErrorDeve .</div>
                     </div>
                     <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
                       <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +68,7 @@ function Features(){
                   >
                     <div>
                       <div className="font-bold leading-snug tracking-tight mb-1">Add your portfolios to the system</div>
-                      <div className="text-gray-600">Take collaboration to the next level with security and administrative features built for teams.</div>
+                      <div className="text-gray-600">Enhance collaboration with fellow developers</div>
                     </div>
                     <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
                       <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -79,8 +82,9 @@ function Features(){
                     onClick={(e) => { e.preventDefault(); setTab(3); }}
                   >
                     <div>
-                      <div className="font-bold leading-snug tracking-tight mb-1">Surf the System</div>
-                      <div className="text-gray-600">Take collaboration to the next level with security and administrative features built for teams.</div>
+                      <div className="font-bold leading-snug tracking-tight mb-1">Store any  website url's</div>
+                      <div className="text-gray-600">       Instead of bookmarking or pinning tabs in your browser, you can store
+          them on ErrorDeve.</div>
                     </div>
                     <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
                       <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +93,7 @@ function Features(){
                     </div>
                   </a>
 
-                  <a
+                  {/* <a
                     className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 ${tab !== 3 ? 'bg-white shadow-md border-gray-200 hover:shadow-lg' : 'bg-gray-200 border-transparent'}`}
                     href="#0"
                     onClick={(e) => { e.preventDefault(); setTab(3); }}
@@ -103,7 +107,7 @@ function Features(){
                         <path d="M11.334 8.06a.5.5 0 00-.421-.237 6.023 6.023 0 01-5.905-6c0-.41.042-.82.125-1.221a.5.5 0 00-.614-.586 6 6 0 106.832 8.529.5.5 0 00-.017-.485z" fill="#191919" fillRule="nonzero" />
                       </svg>
                     </div>
-                  </a>
+                  </a> */}
                 </div>
               </div>
   
@@ -127,7 +131,9 @@ function Features(){
                     >
                       <div className="relative inline-flex flex-col">
                         <img className="md:max-w-none mx-auto rounded" src={FeaturesBg} width={500} height="462" alt="Features bg" />
-                        <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} />
+                        {/* <img className="md:max-w-none absolute w-full left-0 transform animate-float"  */}
+                        {/* // src={FeaturesElement}  */}
+                        {/* width={500} height="44" alt="Element" style={{ top: '30%' }} /> */}
                       </div>
                     </Transition>
                     {/* Item 2 */}
@@ -145,8 +151,8 @@ function Features(){
                       unmount={false}                     
                     >
                       <div className="relative inline-flex flex-col">
-                        <img className="md:max-w-none mx-auto rounded" src={FeaturesBg} width={500} height="462" alt="Features bg" />
-                        <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} />
+                        <img className="md:max-w-none mx-auto rounded" src={FeaturesBg2} width={500} height="462" alt="Features bg" />
+                        {/* <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} /> */}
                       </div>
                     </Transition>
                     {/* Item 3 */}
@@ -164,8 +170,8 @@ function Features(){
                       unmount={false}                     
                     >
                       <div className="relative inline-flex flex-col">
-                        <img className="md:max-w-none mx-auto rounded" src={FeaturesBg} width={500} height="462" alt="Features bg" />
-                        <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} />
+                        <img className="md:max-w-none mx-auto rounded" src={FeaturesBg3} width={500} height="462" alt="Features bg" />
+                        {/* <img className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} /> */}
                       </div>
                     </Transition>
                   </div>

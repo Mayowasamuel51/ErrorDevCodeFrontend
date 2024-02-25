@@ -5,12 +5,11 @@ import { Ripple, initTE } from "tw-elements";
 import GetPortfoilo from "../components/GetPortfoilo";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
+import Footer from "../pages/Footer";
 
 initTE({ Ripple });
 
 const HomeLayout = () => {
- 
-
   const { token } = useStateContext();
   if (token) {
     return <Navigate to="/dashboard" />;
@@ -21,6 +20,7 @@ const HomeLayout = () => {
         <Navbar />
         <Hero />
         <Features/>
+        <Footer/>
 
         {/* <div className="mb-3" style={{ margin: "auto", width: "50%" }}>
         <div className="relative mb-4 flex w-full flex-wrap items-stretch mt-10">
