@@ -7,6 +7,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
 import "@splidejs/react-splide/css";
 import moment from "moment";
+import TableInputCell from "./TableInputCell"
 import {
   useReactTable,
   getCoreRowModel,
@@ -16,7 +17,6 @@ import {
 
 const columnHelper = createColumnHelper()
 
-
 const defaultColumns = [
   columnHelper.accessor(row => row.date, {
     id: 'date',
@@ -25,12 +25,14 @@ const defaultColumns = [
   }),
   columnHelper.accessor(row => row.url, {
     id: 'url',
-    cell: info => <p>{info.getValue()}</p>,
+    // cell: info => <p>{info.getValue()}</p>,
+    cell: info => <TableInputCell {...info} />,
     header: () => <span>WEBSITE URL</span>,
   }),
   columnHelper.accessor(row => row.description, {
     id: 'description',
-    cell: info => <p>{info.getValue()}</p>,
+    // cell: info => <p>{info.getValue()}</p>,
+    cell: info => <TableInputCell {...info} />,
     header: () => <span>DESCRIPTION</span>,
   }),
 ]
@@ -56,7 +58,6 @@ const UrlPagination = () => {
 
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
     if (urls?.data?.response) {
       setData(urls.data.response);
@@ -68,8 +69,11 @@ const UrlPagination = () => {
     columns: defaultColumns,
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: "onChange",
+    // Update the url and description
+    meta: {
+      updateDatas: ()=> alert("updated successfully")
+    }
   });
-
 
   if (error)
     return (
@@ -176,7 +180,7 @@ const UrlPagination = () => {
           </Splide>
         </div>
       </div>
-      <table className="table w-full my-2 ">
+      <table className="table border-2 border-black border-collapse w-full my-2 ">
         <thead>
           {table?.getHeaderGroups()?.map((headerEl) => (
             <tr key={headerEl.id}>
@@ -184,7 +188,8 @@ const UrlPagination = () => {
                 <th
                   key={header.id}
                   colSpan={header.colSpan}
-                  className="bg-black text-white py-1"
+                  style={{ width: `${header.getSize()}px` }}
+                  className={`relative bg-black text-white py-1`}
                   onMouseDown={header.getResizeHandler()}
                   onTouchStart={header.getResizeHandler()}
                 >
@@ -192,6 +197,7 @@ const UrlPagination = () => {
                     header.column.columnDef.header,
                     header.getContext()
                   )}
+                  <div className={`resizer ${header.column.getIsResizing() && "show"} `}></div>
                 </th>
               ))}
             </tr>
@@ -201,13 +207,13 @@ const UrlPagination = () => {
           {table?.getRowModel().rows.map((row) => (
             <tr
               key={row?.id}
-              className={`${row?.id % 2 !== 0 && "bg-black text-white"}`}
+              className={`${row?.id % 2 !== 0 && ""}`}
             >
               {row?.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
                   colSpan={cell.colSpan}
-                  className={`text-center py-2`}
+                  className={`text-center py-2 border-2 border-black`}
                 >
                   {flexRender(cell?.column.columnDef.cell, cell.getContext())}
                 </td>

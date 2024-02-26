@@ -8,3 +8,17 @@
   font-family: 'Poppins',;
   /* font-weight: bolder; */
 }
+
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: rgb(60, 60, 189);
+  opacity: 0;
+}
+
+.resizer.show {
+  opacity: 1;
+}
