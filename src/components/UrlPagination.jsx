@@ -7,12 +7,14 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
 import "@splidejs/react-splide/css";
 import moment from "moment";
-import TableInputCell from "./TableInputCell"
+import TableInputCell from "./TableInputCell";
+import { FilterData } from "./FilterData";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
   createColumnHelper,
+  getFilteredRowModel
 } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper()
@@ -57,6 +59,7 @@ const UrlPagination = () => {
   }
 
   const [data, setData] = useState([]);
+  const [columnFilters, setcolumnFilters] = useState([])
 
   useEffect(() => {
     if (urls?.data?.response) {
@@ -64,10 +67,15 @@ const UrlPagination = () => {
     }
   }, [urls]);
 
+
   const table = useReactTable({
     data: data,
     columns: defaultColumns,
+    state: {
+      columnFilters,
+    },
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     columnResizeMode: "onChange",
     // Update the url and description
     meta: {
@@ -180,6 +188,7 @@ const UrlPagination = () => {
           </Splide>
         </div>
       </div>
+      <FilterData columnFilters={columnFilters} setcolumnFilters={setcolumnFilters} />
       <table className="table border-2 border-black border-collapse w-full my-2 ">
         <thead>
           {table?.getHeaderGroups()?.map((headerEl) => (

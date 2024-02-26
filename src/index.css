@@ -4,9 +4,8 @@
 @tailwind utilities;
 
 * {
-
-  font-family: 'Poppins',;
-  /* font-weight: bolder; */
+  font-family: 'Poppins', 'san-serif';
+  /* border: 1px solid; */
 }
 
 .resizer {
