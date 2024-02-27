@@ -81,11 +81,11 @@ export const FilterData = ({columnFilters, setcolumnFilters}) => {
 
 
             <div className="flex gap-3 items-center">
-                <div className="border-2 border-[#fafbfd] rounded-sm">
-                    <MdRefresh size={30} color='gainsboro' />
+                <div className="border-2 border-[#f2f2f2] rounded-lg">
+                    <MdRefresh size={30} color='#f2f2f2' />
                 </div>
-                <div className="border-2 border-[#fafbfd] rounded-sm">
-                    <TbListDetails size={30} color='gainsboro' />
+                <div className="border-2 border-[#f2f2f2] rounded-lg">
+                    <TbListDetails size={30} color='#f2f2f2' />
                 </div>
             </div>
         </div>

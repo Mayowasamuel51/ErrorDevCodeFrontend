@@ -16,6 +16,8 @@ import {
   createColumnHelper,
   getFilteredRowModel
 } from "@tanstack/react-table";
+import { SlCalender } from "react-icons/sl";
+import { FaLink } from "react-icons/fa";
 
 const columnHelper = createColumnHelper()
 
@@ -23,13 +25,13 @@ const defaultColumns = [
   columnHelper.accessor(row => row.date, {
     id: 'date',
     cell: info => <p>{moment(info.getValue()).format("YYYY-MM-DD")}</p>,
-    header: () => <span>DATE</span>,
+    header: () => <span className="flex justify-center items-center gap-3"><SlCalender size={20}/> DATE</span>,
   }),
   columnHelper.accessor(row => row.url, {
     id: 'url',
     cell: info => <p>{info.getValue()}</p>,
     // cell: info => <TableInputCell {...info} />,
-    header: () => <span>WEBSITE URL</span>,
+    header: () => <span className="flex justify-center items-center gap-3"><FaLink size={20} />WEBSITE URL</span>,
   }),
   columnHelper.accessor(row => row.description, {
     id: 'description',
@@ -232,6 +234,7 @@ const UrlPagination = () => {
           }
         </tbody>
       </table>
+      <h1 className="text-3xl text-center font-bold">PAGINATION GOES HERE!!</h1>
     </div>
   );
 };

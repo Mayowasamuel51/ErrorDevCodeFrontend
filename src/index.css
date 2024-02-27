@@ -48,6 +48,13 @@ table tr:last-child td:last-child {
   -moz-border-radius: 0 0 10px 0 !important;
   border-radius: 0 0 10px 0;
 }
+table tbody tr {
+  cursor: pointer;
+}
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
 table tr:hover td {
   background-color: #ddd !important
 }
