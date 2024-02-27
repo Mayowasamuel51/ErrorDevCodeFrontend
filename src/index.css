@@ -55,6 +55,9 @@ table tbody tr {
 table tbody tr:last-child {
   border-bottom: none;
 }
+table tr td {
+  transition: background-color 200ms ease-in-out;
+}
 table tr:hover td {
   background-color: #ddd !important
 }
