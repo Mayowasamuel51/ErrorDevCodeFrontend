@@ -25,13 +25,13 @@ const defaultColumns = [
   columnHelper.accessor(row => row.date, {
     id: 'date',
     cell: info => <p>{moment(info.getValue()).format("YYYY-MM-DD")}</p>,
-    header: () => <span className="flex justify-center items-center gap-3"><SlCalender size={20}/> DATE</span>,
+    header: () => <span className="flex justify-center items-center gap-2"><SlCalender size={20}/> DATE</span>,
   }),
   columnHelper.accessor(row => row.url, {
     id: 'url',
     cell: info => <p>{info.getValue()}</p>,
     // cell: info => <TableInputCell {...info} />,
-    header: () => <span className="flex justify-center items-center gap-3"><FaLink size={20} />WEBSITE URL</span>,
+    header: () => <span className="flex justify-center items-center gap-2"><FaLink size={20} />WEBSITE URL</span>,
   }),
   columnHelper.accessor(row => row.description, {
     id: 'description',
