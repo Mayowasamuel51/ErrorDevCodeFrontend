@@ -112,7 +112,7 @@ const Url = () => {
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mt-16 w-full grid place-items-center "
+          className="mt-10 w-full grid place-items-center "
         >
           <div className="w-4/5 h-40 ">
             <ToastContainer />
