@@ -1,20 +1,14 @@
 /* eslint-disable react/prop-types */
 import Input from '@mui/joy/Input';
 import Button from "@mui/material/Button";
-import FilterIcon from "@mui/icons-material/Filter";
 import { useState } from 'react'
 import * as React from 'react';
 import { Box, Menu } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
-import Avatar from '@mui/material/Avatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
+import { FaFilter } from "react-icons/fa";
+import { MdRefresh } from "react-icons/md";
+import { TbListDetails } from "react-icons/tb";
 
 export const FilterData = ({columnFilters, setcolumnFilters}) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -41,46 +35,58 @@ export const FilterData = ({columnFilters, setcolumnFilters}) => {
     }
 
     return (
-        <div className="relative flex gap-3 items-center">
-            <Input
-                startDecorator={<FilterIcon />}
-                sx={{ width: 300 }}
-                value={filterInput}
-                onChange={(e)=> onFilterChange("url", e.target.value)}
-            ></Input>
-             <Tooltip title="Filter by">
-                <Button
-                    id="demo-positioned-button"
-                    aria-controls={open ? 'demo-positioned-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                    variant="contained"
-                >
-                    Filter By
-                </Button>
-              </Tooltip>
-            <div className="absolute right-0">
-                <Menu
-                    className=''
-                    id=""
-                    aria-labelledby=""
-                    anchorEl={anchorEl}
-                    open={Boolean(open)}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                    }}
-                >
-                    <MenuItem onClick={()=>handleClose()} >Url</MenuItem>
-                    <MenuItem onClick={()=>handleClose()} >Date</MenuItem>
-                    <MenuItem onClick={()=>handleClose()} >Description</MenuItem>
-                </Menu>
+        <div className="flex justify-between items-center">
+            <div className="relative flex gap-3">
+                <Input
+                    startDecorator={<FaFilter />}
+                    sx={{ width: 300 }}
+                    value={filterInput}
+                    onChange={(e)=> onFilterChange("url", e.target.value)}
+                ></Input>
+                 <Tooltip title="Filter by">
+                    <Button
+                        id="demo-positioned-button"
+                        aria-controls={open ? 'demo-positioned-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                        variant="contained"
+                    >
+                        <FaFilter size={20} />
+                    </Button>
+                  </Tooltip>
+                <div className="absolute right-0">
+                    <Menu
+                        className=''
+                        id=""
+                        aria-labelledby=""
+                        anchorEl={anchorEl}
+                        open={Boolean(open)}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                        }}
+                    >
+                        <MenuItem onClick={()=>handleClose()} >Url</MenuItem>
+                        <MenuItem onClick={()=>handleClose()} >Date</MenuItem>
+                        <MenuItem onClick={()=>handleClose()} >Description</MenuItem>
+                    </Menu>
+                </div>
+            </div>
+
+
+            <div className="flex gap-3 items-center">
+                <div className="border-2 border-[#f2f2f2] rounded-lg">
+                    <MdRefresh size={30} color='#f2f2f2' />
+                </div>
+                <div className="border-2 border-[#f2f2f2] rounded-lg">
+                    <TbListDetails size={30} color='#f2f2f2' />
+                </div>
             </div>
         </div>
     )

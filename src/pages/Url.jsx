@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UrlPagination from "../components/UrlPagination";
+import { useQueryClient } from "@tanstack/react-query";
+
+
 const api = import.meta.env.VITE_STORE_API;
 const formVariant = {
   initial: {
@@ -39,6 +42,9 @@ const Url = () => {
   const navigate = useNavigate();
   const [error, setError] = React.useState(null);
 
+  const queryClient = useQueryClient()
+
+
   const schema = yup.object().shape({
     websiteurl: yup.string().required(),
     description: yup.string().required(),
@@ -47,12 +53,12 @@ const Url = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
   const onSubmit = (data) => {
     // check to get the url image
-
     const payload = {
       email: user,
       url: data.websiteurl,
@@ -69,6 +75,8 @@ const Url = () => {
         if (res.status === 201 || res.status === 200) {
           navigate("/dashboard");
           notify();
+          queryClient.invalidateQueries(["url"])
+          reset()
         }
       })
       .catch((err) => {
@@ -85,7 +93,7 @@ const Url = () => {
   };
   return (
     <>
-      <div className="text-center   p-4">
+      <div className="text-center p-4 py-12">
         <h2 className="font-semibold text-4xl">
           Share website URLs for storage
           {/* Please share the website URLs for storage  */}
@@ -104,7 +112,7 @@ const Url = () => {
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mt-16 w-full grid place-items-center "
+          className="mt-10 w-full grid place-items-center "
         >
           <div className="w-4/5 h-40 ">
             <ToastContainer />
@@ -137,8 +145,8 @@ const Url = () => {
           </div>
         </form>
       </motion.div>
-      <div className="mt-4 w-full grid place-items-center">
-        <div className="mt-16  w-4/5 h-40 ">
+      <div className="mt-8 w-full grid place-items-center">
+        <div className="mt-16 w-4/5 h-40 ">
           <UrlPagination />
         </div>
       </div>

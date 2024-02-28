@@ -16,6 +16,8 @@ import {
   createColumnHelper,
   getFilteredRowModel
 } from "@tanstack/react-table";
+import { SlCalender } from "react-icons/sl";
+import { FaLink } from "react-icons/fa";
 
 const columnHelper = createColumnHelper()
 
@@ -23,18 +25,18 @@ const defaultColumns = [
   columnHelper.accessor(row => row.date, {
     id: 'date',
     cell: info => <p>{moment(info.getValue()).format("YYYY-MM-DD")}</p>,
-    header: () => <span>DATE</span>,
+    header: () => <span className="flex justify-center items-center gap-2"><SlCalender size={20}/> DATE</span>,
   }),
   columnHelper.accessor(row => row.url, {
     id: 'url',
-    // cell: info => <p>{info.getValue()}</p>,
-    cell: info => <TableInputCell {...info} />,
-    header: () => <span>WEBSITE URL</span>,
+    cell: info => <p>{info.getValue()}</p>,
+    // cell: info => <TableInputCell {...info} />,
+    header: () => <span className="flex justify-center items-center gap-2"><FaLink size={20} />WEBSITE URL</span>,
   }),
   columnHelper.accessor(row => row.description, {
     id: 'description',
-    // cell: info => <p>{info.getValue()}</p>,
-    cell: info => <TableInputCell {...info} />,
+    cell: info => <p>{info.getValue()}</p>,
+    // cell: info => <TableInputCell {...info} />,
     header: () => <span>DESCRIPTION</span>,
   }),
 ]
@@ -94,7 +96,7 @@ const UrlPagination = () => {
 
   return (
     <div className="">
-      {/* <table className="dashboard table-auto w-full">
+      {/* {/* <table className="dashboard table-auto w-full">
         <thead className="">
           <tr className="font-black text-left">
             <th className="text-sm md:text-base tracking-wide p-1 md:p-2">
@@ -187,18 +189,18 @@ const UrlPagination = () => {
             ))}
           </Splide>
         </div>
-      </div>  */}
+      </div> */}
       <FilterData columnFilters={columnFilters} setcolumnFilters={setcolumnFilters} />
-      <table className="table border-2 border-black border-collapse w-full my-2 ">
+      <table className="table w-full my-2 min-h-screen">
         <thead>
           {table?.getHeaderGroups()?.map((headerEl) => (
-            <tr key={headerEl.id}>
+            <tr key={headerEl.id} className="bg-[#f2f2f2]">
               {headerEl?.headers.map((header) => (
                 <th
                   key={header.id}
                   colSpan={header.colSpan}
                   style={{ width: `${header.getSize()}px` }}
-                  className={`relative bg-black text-white py-1`}
+                  className={`font-black text-lg relative py-3`}
                   onMouseDown={header.getResizeHandler()}
                   onTouchStart={header.getResizeHandler()}
                 >
@@ -216,13 +218,13 @@ const UrlPagination = () => {
           {table?.getRowModel().rows.map((row) => (
             <tr
               key={row?.id}
-              className={`${row?.id % 2 !== 0 && ""}`}
+              className={`${row?.id % 2 !== 0 && ""} bg-[#f8fafa] border-b-[3px] border-[#f2f2f2]`}
             >
               {row?.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
                   colSpan={cell.colSpan}
-                  className={`text-center py-2 border-2 border-black`}
+                  className={`md:text-sm text-center py-1`}
                 >
                   {flexRender(cell?.column.columnDef.cell, cell.getContext())}
                 </td>
@@ -232,6 +234,7 @@ const UrlPagination = () => {
           }
         </tbody>
       </table>
+      <h1 className="text-3xl text-center font-bold">PAGINATION GOES HERE!!</h1>
     </div>
   );
 };

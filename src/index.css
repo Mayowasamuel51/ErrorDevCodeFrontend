@@ -21,3 +21,43 @@
 .resizer.show {
   opacity: 1;
 }
+
+table {
+  -moz-border-radius: 10px !important;
+  border-radius: 10px;
+  border-collapse: collapse !important;
+  border: none !important;
+}
+table th,
+table td {
+  border: none !important
+}
+table tr th:first-child {
+  -moz-border-radius: 10px 0 0 0 !important;
+  border-radius: 10px 0 0 0;
+}
+table tr th:last-child {
+  -moz-border-radius: 0 10px 0 0 !important;
+  border-radius: 0 10px 0 0;
+}
+table tr:last-child td:first-child {
+  -moz-border-radius: 0 0 0 10px !important;
+  border-radius:  0 0 0 10px;
+}
+table tr:last-child td:last-child {
+  -moz-border-radius: 0 0 10px 0 !important;
+  border-radius: 0 0 10px 0;
+}
+table tbody tr {
+  cursor: pointer;
+}
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
+table tr td {
+  transition: background-color 200ms ease-in-out;
+}
+table tr:hover td {
+  background-color: #ddd !important
+}
