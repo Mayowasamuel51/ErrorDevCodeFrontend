@@ -94,7 +94,7 @@ const UrlPagination = () => {
 
   return (
     <div className="">
-      <table className="dashboard table-auto w-full">
+      {/* <table className="dashboard table-auto w-full">
         <thead className="">
           <tr className="font-black text-left">
             <th className="text-sm md:text-base tracking-wide p-1 md:p-2">
@@ -133,8 +133,8 @@ const UrlPagination = () => {
             </tr>
           ))}
         </tbody>
-      </table>
-      <div>
+      </table> */}
+      {/* <div>
         {!urls && (
           <h3 className="font-bold text-center md:text-3xl">
             No Data Available.
@@ -187,7 +187,7 @@ const UrlPagination = () => {
             ))}
           </Splide>
         </div>
-      </div>
+      </div>  */}
       <FilterData columnFilters={columnFilters} setcolumnFilters={setcolumnFilters} />
       <table className="table border-2 border-black border-collapse w-full my-2 ">
         <thead>
