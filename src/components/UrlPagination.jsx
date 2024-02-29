@@ -44,34 +44,30 @@ const defaultColumns = [
 const UrlPagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  const { data: urls, isLoading, error } = UrlFetch();
+
+  const { data, isLoading: urlLoading, error } = UrlFetch();
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const paginatedData = urls?.data?.response?.slice(
+  const paginatedData = data?.data?.response?.slice(
     firstPostIndex,
     lastPostIndex
   );
 
-  const length = urls?.data?.response?.length ?? 1;
+  const length = data?.data?.response?.length ?? 1;
 
   const pageNumber = [];
   for (let i = 1; i <= Math.ceil(length / postsPerPage); i++) {
     pageNumber.push(i);
   }
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [columnFilters, setcolumnFilters] = useState([])
 
-  useEffect(() => {
-    if (urls?.data?.response) {
-      setData(urls.data.response);
-    }
-  }, [urls]);
-
+  console.log(data)
 
   const table = useReactTable({
-    data: data,
+    data: data?.data.response,
     columns: defaultColumns,
     state: {
       columnFilters,
@@ -85,14 +81,14 @@ const UrlPagination = () => {
     }
   });
 
+
   if (error)
     return (
       <p className="text-center text-red-500 md:text-3xl font-black">
         {error.message}
       </p>
     );
-  if (isLoading) return <Loader />;
-  if (urls?.status === 500) return <ServerErrorPage />;
+  if (data?.status === 500) return <ServerErrorPage />;
 
   return (
     <div className="">
@@ -191,7 +187,8 @@ const UrlPagination = () => {
         </div>
       </div> */}
       <FilterData columnFilters={columnFilters} setcolumnFilters={setcolumnFilters} />
-      <table className="table w-full my-2 min-h-screen">
+     {
+     <table className={`table w-full my-2 ${data?.data.response && "min-h-screen"}`}>
         <thead>
           {table?.getHeaderGroups()?.map((headerEl) => (
             <tr key={headerEl.id} className="bg-[#f2f2f2]">
@@ -214,8 +211,9 @@ const UrlPagination = () => {
             </tr>
           ))}
         </thead>
+        {data && !urlLoading && 
         <tbody>
-          {table?.getRowModel().rows.map((row) => (
+          {table?.getRowModel()?.rows.map((row) => (
             <tr
               key={row?.id}
               className={`${row?.id % 2 !== 0 && ""} bg-[#f8fafa] border-b-[3px] border-[#f2f2f2]`}
@@ -232,8 +230,9 @@ const UrlPagination = () => {
             </tr>
           ))
           }
-        </tbody>
-      </table>
+        </tbody>}
+      </table>}
+      {!data && urlLoading && <Loader />}
       <h1 className="text-3xl text-center font-bold">PAGINATION GOES HERE!!</h1>
     </div>
   );
