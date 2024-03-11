@@ -77,7 +77,7 @@ function Header() {
         loggedInUser
           .getIdToken()
           .then((token) => {
-            console.log(token);
+            // console.log(token);
             window.localStorage.setItem("user", loggedInUser.email);
             setToken(token);
             setImageGoogle(loggedInUser.photoURL);

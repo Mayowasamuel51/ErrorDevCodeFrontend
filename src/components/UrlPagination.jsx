@@ -14,7 +14,8 @@ import {
   getCoreRowModel,
   flexRender,
   createColumnHelper,
-  getFilteredRowModel
+  getFilteredRowModel,
+  getPaginationRowModel
 } from "@tanstack/react-table";
 import { SlCalender } from "react-icons/sl";
 import { FaLink } from "react-icons/fa";
@@ -42,32 +43,11 @@ const defaultColumns = [
 ]
 
 const UrlPagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
-
-  const { data, isLoading: urlLoading, error } = UrlFetch();
-
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const paginatedData = data?.data?.response?.slice(
-    firstPostIndex,
-    lastPostIndex
-  );
-
-  const length = data?.data?.response?.length ?? 1;
-
-  const pageNumber = [];
-  for (let i = 1; i <= Math.ceil(length / postsPerPage); i++) {
-    pageNumber.push(i);
-  }
-
-  // const [data, setData] = useState([]);
+  const { data, isLoading, error } = UrlFetch()
   const [columnFilters, setcolumnFilters] = useState([])
 
-  console.log(data)
-
   const table = useReactTable({
-    data: data?.data.response,
+    data,
     columns: defaultColumns,
     state: {
       columnFilters,
@@ -78,7 +58,8 @@ const UrlPagination = () => {
     // Update the url and description
     meta: {
       updateDatas: ()=> alert("updated successfully")
-    }
+    },
+    getPaginationRowModel: getPaginationRowModel()
   });
 
 
@@ -89,106 +70,13 @@ const UrlPagination = () => {
       </p>
     );
   if (data?.status === 500) return <ServerErrorPage />;
+  if (isLoading) return <Loader />
 
   return (
     <div className="">
-      {/* {/* <table className="dashboard table-auto w-full">
-        <thead className="">
-          <tr className="font-black text-left">
-            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">
-              Date
-            </th>
-            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">
-              Website Url{" "}
-            </th>
-            <th className="text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block">
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody className="tbody">
-          {paginatedData?.map((info, index) => (
-            <tr key={index} className="">
-              <td
-                data-cell="Registration Date"
-                className="text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2"
-              >
-                {" "}
-                {moment(info.date).utc().format("YYYY-MM-DD")}
-              </td>
-              <td
-                data-cell="Student Name"
-                className="text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2"
-              >
-                <a href={`${info.url}`}>{info.url}</a>
-              </td>
-              <td
-                data-cell="Email Address"
-                className="text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2"
-              >
-                {info.description}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-      {/* <div>
-        {!urls && (
-          <h3 className="font-bold text-center md:text-3xl">
-            No Data Available.
-          </h3>
-        )}
-      </div>
-      <div className="relative text-sm text-center my-2 md:my-4 font-bold tracking-wider group">
-        {pageNumber.length > 0 && (
-          <p>
-            {currentPage} 0f {pageNumber?.length}{" "}
-            {pageNumber?.length > 1 ? "pages" : "page"}
-          </p>
-        )}
-        <div className="my-2 md:my-5">
-          <Splide
-            options={{
-              drag: "free",
-              pagination: false,
-              perPage: 5,
-              perMove: 3,
-              gap: "20px",
-              focus: "center",
-              trimSpace: false,
-              arrows: pageNumber.length > 1 ? true : false,
-              breakpoints: {
-                768: {
-                  perPage: 4,
-                  perMove: 2,
-                  gap: "10px",
-                  focus: "none",
-                  trimSpace: pageNumber.length > 1 && true,
-                },
-              },
-            }}
-            className=""
-          >
-            {pageNumber.map((num) => (
-              <SplideSlide key={num}>
-                <button
-                  onClick={() => setCurrentPage(num)}
-                  key={num}
-                  className={`${
-                    currentPage === num &&
-                    "bg-BLUE text-white px-3 py-2 rounded-md"
-                  } px-3 py-2 text-sm md:text-base font-bold`}
-                >
-                  {num}
-                </button>
-              </SplideSlide>
-            ))}
-          </Splide>
-        </div>
-      </div> */}
       <FilterData columnFilters={columnFilters} setcolumnFilters={setcolumnFilters} />
-     {
-     <table className={`table w-full my-2 ${data?.data.response && "min-h-screen"}`}>
+     {(data?.length > 0) &&
+     <table className={`table w-full my-2`}>
         <thead>
           {table?.getHeaderGroups()?.map((headerEl) => (
             <tr key={headerEl.id} className="bg-[#f2f2f2]">
@@ -211,18 +99,18 @@ const UrlPagination = () => {
             </tr>
           ))}
         </thead>
-        {data && !urlLoading && 
+        {(data?.length > 0 && !isLoading) && 
         <tbody>
           {table?.getRowModel()?.rows.map((row) => (
             <tr
               key={row?.id}
-              className={`${row?.id % 2 !== 0 && ""} bg-[#f8fafa] border-b-[3px] border-[#f2f2f2]`}
+              className={`bg-[#f8fafa] border-b-[3px] border-[#f2f2f2]`}
             >
               {row?.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
                   colSpan={cell.colSpan}
-                  className={`md:text-sm text-center py-1`}
+                  className={`md:text-sm text-center py-2`}
                 >
                   {flexRender(cell?.column.columnDef.cell, cell.getContext())}
                 </td>
@@ -232,10 +120,34 @@ const UrlPagination = () => {
           }
         </tbody>}
       </table>}
-      {!data && urlLoading && <Loader />}
-      <h1 className="text-3xl text-center font-bold">PAGINATION GOES HERE!!</h1>
+      {!data?.length !== 0 && isLoading && <Loader />}      
+      <Splide options={{
+        drag: "free",
+        pagination: false,
+        perPage: 5,
+        perMove: 3,
+        gap: "20px",
+        focus: "center",
+        trimSpace: false,
+        arrows: table.getPageOptions().length > 1 ? true : false,
+        breakpoints: {
+          768: {
+            perPage: 4,
+            perMove: 2,
+            gap: "10px",
+            focus: "none",
+            trimSpace: table.getPageOptions().length > 1 && true,
+          },
+        }}}>
+      {table.getPageOptions().map(num=> (
+        <SplideSlide key={num}>
+          <button onClick={()=>table.setPageIndex(num)} className={`cursor-pointer py-2 px-4 rounded-md bg-black text-white ${table.getPageCount()}`}>{num + 1}</button>
+        </SplideSlide>
+      ))}
+      </Splide>
     </div>
   );
 };
+
 
 export default UrlPagination;
