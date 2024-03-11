@@ -10,7 +10,7 @@ import { FaFilter } from "react-icons/fa";
 import { MdRefresh } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
 
-export const FilterData = ({columnFilters, setcolumnFilters}) => {
+export const FilterData = ({filtering, columnFilters, setcolumnFilters}) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -19,12 +19,6 @@ export const FilterData = ({columnFilters, setcolumnFilters}) => {
     const handleClose = () => {
         setcolumnFilters((prev)=> {
             const description = prev.find(filter => filter.id === "description")?.value
-            // if (!description) {
-            //     return prev.concat({
-            //         id: "description",
-            //         value: description
-            //     })
-            // }
         })
         setAnchorEl(null);
     };
@@ -40,10 +34,10 @@ export const FilterData = ({columnFilters, setcolumnFilters}) => {
                 <Input
                     startDecorator={<FaFilter />}
                     sx={{ width: 300 }}
-                    value={filterInput}
+                    value={filterInput || filtering}
                     onChange={(e)=> onFilterChange("url", e.target.value)}
                 ></Input>
-                 <Tooltip title="Filter by">
+                 {/* <Tooltip title="Filter by">
                     <Button
                         id="demo-positioned-button"
                         aria-controls={open ? 'demo-positioned-menu' : undefined}
@@ -54,8 +48,8 @@ export const FilterData = ({columnFilters, setcolumnFilters}) => {
                     >
                         <FaFilter size={20} />
                     </Button>
-                  </Tooltip>
-                <div className="absolute right-0">
+                  </Tooltip> */}
+                {/* <div className="absolute right-0">
                     <Menu
                         className=''
                         id=""
@@ -72,11 +66,13 @@ export const FilterData = ({columnFilters, setcolumnFilters}) => {
                         horizontal: 'left',
                         }}
                     >
+
+                        <MenuItem selected onClick={()=>handleClose()} >ALL</MenuItem>
                         <MenuItem onClick={()=>handleClose()} >Url</MenuItem>
                         <MenuItem onClick={()=>handleClose()} >Date</MenuItem>
                         <MenuItem onClick={()=>handleClose()} >Description</MenuItem>
                     </Menu>
-                </div>
+                </div> */}
             </div>
 
 
