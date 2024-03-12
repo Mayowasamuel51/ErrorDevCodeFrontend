@@ -1,5 +1,5 @@
 import Loader from "../components/Loader";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import UrlFetch from "../hooks/FetchUrl";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import ServerErrorPage from "../ServerErrorPage";
@@ -47,11 +47,12 @@ const UrlPagination = () => {
   const { data, isLoading, error } = UrlFetch()
   const [sorting, setSorting] = useState([])
   const [columnFilters, setcolumnFilters] = useState([])
-
   const [filtering, setFiltering] = useState("")
 
+  // const data = useMemo(()=> tableData, [])
+
   const table = useReactTable({
-    data,
+    data: isLoading  ? [] : data,
     columns: defaultColumns,
     state: {
       columnFilters,
@@ -70,7 +71,6 @@ const UrlPagination = () => {
     onSortingChange: setSorting,
     onGlobalFilterChange: setFiltering
   });
-
 
   if (error)
     return (

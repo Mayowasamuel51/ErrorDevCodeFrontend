@@ -94,13 +94,13 @@ function Header() {
       {token ? (
         <header
           style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
-          className="  w-full flex justify-between items-center px-36 p-5 pt-5   duration-300 ease-in-out"
+          className="fixed bg-white  w-full flex justify-between items-center md:px-36 p-5 pt-5 duration-300 ease-in-out"
         >
           <div className="shrink-0 mr-4">
             <Logo />
           </div>
           <div className="flex gap-20 items-center">
-            <ul className="font-semibold p-1 flex  relative ">
+            <ul className="font-semibold p-1 relative hidden md:flex">
               <motion.li transition={{ stiffness: 250 }}>
                 <NavLink
                   style={{ paddingLeft: "20px" }}
@@ -288,7 +288,7 @@ function Header() {
       ) : (
         <header
           style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
-          className="  w-full flex justify-between items-center px-36 p-5 pt-5   duration-300 ease-in-out"
+          className="w-full flex justify-between items-center md:px-36 p-5 pt-5 duration-300 ease-in-out"
         >
           <div className="shrink-0 mr-4">
             <Logo />

@@ -66,7 +66,7 @@ const ApiKey = () => {
   return (
     <>
       {/* <h2 className="text-center font-bold text-4xl  p-4">STORE YOUR API KEYS </h2> */}
-      <div className="text-center   p-4">
+      <div className="text-center p-4 pt-32">
         <h2 className="font-semibold text-4xl">
           {/* Share website URLs for storage */}
           STORE YOUR API KEYS 

@@ -93,7 +93,7 @@ const Url = () => {
   };
   return (
     <>
-      <div className="text-center p-4 py-12">
+      <div className="text-center p-4 pt-32 py-12">
         <h2 className="font-semibold text-4xl">
           Share website URLs for storage
           {/* Please share the website URLs for storage  */}
